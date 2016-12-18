@@ -10,7 +10,7 @@ public class Starter {
             //Create and set up the window.
             JFrame main_frame = new MainFrame();
             main_frame.setSize(450, 260);
-            main_frame.setExtendedState(main_frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
+//            main_frame.setExtendedState(main_frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
             main_frame.setVisible(true);
         });
 

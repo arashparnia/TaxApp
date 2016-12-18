@@ -19,20 +19,39 @@ import javax.swing.JFrame;
  * Created by arashparnia on 18/12/2016.
  */
 public class MainFrame extends JFrame {
-    JMenuBar menuBar;
-    JTextArea output;
-    JScrollPane scrollPane;
 
-    public void MainFrame(){
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        createMenuBar();
+
+
+    public  MainFrame(){
+
+        this.setJMenuBar(createMenuBar());
+
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
 
         setTitle("TaxApp");
+
+
+
+
+        JButton b1 = new JButton("TEST");
+        JButton b2 = new JButton("TEST");
+        JPanel main_panel = new JPanel();
+
+
+        main_panel.add(b1);
+        main_panel.add(b2);
+        this.add(main_panel);
+
+
+
+
+
     }
 
 
-
-    private void createMenuBar() {
+    private JMenuBar createMenuBar(){
+        JMenuBar menuBar;
         //Where the GUI is created:
 
         JMenu menu, submenu;
@@ -112,6 +131,11 @@ public class MainFrame extends JFrame {
         menu.getAccessibleContext().setAccessibleDescription(
                 "This menu does nothing");
         menuBar.add(menu);
-        this.setJMenuBar(menuBar);
+
+
+return menuBar;
     }
+
+
+
 }
