@@ -1,3 +1,5 @@
+package TaxApp;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -55,7 +57,7 @@ public class MainFrame extends JFrame {
         //Where the GUI is created:
 
         JMenu menu, submenu;
-        JMenuItem menuItem;
+        JMenuItem file_menuItem;
         JRadioButtonMenuItem rbMenuItem;
         JCheckBoxMenuItem cbMenuItem;
 
@@ -63,29 +65,29 @@ public class MainFrame extends JFrame {
         menuBar = new JMenuBar();
 
 //Build the first menu.
-        menu = new JMenu("A Menu");
+        menu = new JMenu("File");
         menu.setMnemonic(KeyEvent.VK_A);
         menu.getAccessibleContext().setAccessibleDescription(
-                "The only menu in this program that has menu items");
+                "File Operations");
         menuBar.add(menu);
 
 //a group of JMenuItems
-        menuItem = new JMenuItem("A text-only menu item",
+        file_menuItem = new JMenuItem("A text-only menu item",
                 KeyEvent.VK_T);
-        menuItem.setAccelerator(KeyStroke.getKeyStroke(
+        file_menuItem.setAccelerator(KeyStroke.getKeyStroke(
                 KeyEvent.VK_1, ActionEvent.ALT_MASK));
-        menuItem.getAccessibleContext().setAccessibleDescription(
+        file_menuItem.getAccessibleContext().setAccessibleDescription(
                 "This doesn't really do anything");
-        menu.add(menuItem);
+        menu.add(file_menuItem);
 
-        menuItem = new JMenuItem("Both text and icon",
+        file_menuItem = new JMenuItem("Both text and icon",
                 new ImageIcon("images/middle.gif"));
-        menuItem.setMnemonic(KeyEvent.VK_B);
-        menu.add(menuItem);
+        file_menuItem.setMnemonic(KeyEvent.VK_B);
+        menu.add(file_menuItem);
 
-        menuItem = new JMenuItem(new ImageIcon("images/middle.gif"));
-        menuItem.setMnemonic(KeyEvent.VK_D);
-        menu.add(menuItem);
+        file_menuItem = new JMenuItem(new ImageIcon("images/middle.gif"));
+        file_menuItem.setMnemonic(KeyEvent.VK_D);
+        menu.add(file_menuItem);
 
 //a group of radio button menu items
         menu.addSeparator();
@@ -116,13 +118,13 @@ public class MainFrame extends JFrame {
         submenu = new JMenu("A submenu");
         submenu.setMnemonic(KeyEvent.VK_S);
 
-        menuItem = new JMenuItem("An item in the submenu");
-        menuItem.setAccelerator(KeyStroke.getKeyStroke(
+        file_menuItem = new JMenuItem("An item in the submenu");
+        file_menuItem.setAccelerator(KeyStroke.getKeyStroke(
                 KeyEvent.VK_2, ActionEvent.ALT_MASK));
-        submenu.add(menuItem);
+        submenu.add(file_menuItem);
 
-        menuItem = new JMenuItem("Another item");
-        submenu.add(menuItem);
+        file_menuItem = new JMenuItem("Another item");
+        submenu.add(file_menuItem);
         menu.add(submenu);
 
 //Build second menu in the menu bar.
