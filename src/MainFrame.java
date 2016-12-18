@@ -24,14 +24,15 @@ public class MainFrame extends JFrame {
     JScrollPane scrollPane;
 
     public void MainFrame(){
-//        this.setJMenuBar(createMenuBar());
-//        this.setSize(450, 260);
-//        this.setVisible(true);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        createMenuBar();
+
+        setTitle("TaxApp");
     }
 
 
 
-    public JMenuBar createMenuBar() {
+    private void createMenuBar() {
         //Where the GUI is created:
         JMenuBar menuBar;
         JMenu menu, submenu;
@@ -111,6 +112,6 @@ public class MainFrame extends JFrame {
         menu.getAccessibleContext().setAccessibleDescription(
                 "This menu does nothing");
         menuBar.add(menu);
-        return menuBar;
+        this.setJMenuBar(menuBar);
     }
 }

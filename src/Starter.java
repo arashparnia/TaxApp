@@ -8,14 +8,10 @@ public class Starter {
 
         //Create and set up the window.
         JFrame main_frame = new MainFrame();
-        main_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        //Create and set up the content pane.
-        main_frame.setJMenuBar(main_frame.getJMenuBar());
-        main_frame.setContentPane(main_frame.getContentPane());
-
-        //Display the window.
         main_frame.setSize(450, 260);
+        main_frame.setExtendedState( main_frame.getExtendedState()|JFrame.MAXIMIZED_BOTH );
         main_frame.setVisible(true);
+
+
     }
 }
