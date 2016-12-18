@@ -19,7 +19,7 @@ import javax.swing.JFrame;
  * Created by arashparnia on 18/12/2016.
  */
 public class MainFrame extends JFrame {
-
+    JMenuBar menuBar;
     JTextArea output;
     JScrollPane scrollPane;
 
@@ -34,7 +34,7 @@ public class MainFrame extends JFrame {
 
     private void createMenuBar() {
         //Where the GUI is created:
-        JMenuBar menuBar;
+
         JMenu menu, submenu;
         JMenuItem menuItem;
         JRadioButtonMenuItem rbMenuItem;

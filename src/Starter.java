@@ -1,17 +1,18 @@
-import javax.swing.*;
 
+import java.awt.EventQueue;
+import javax.swing.JFrame;
 /**
  * Created by arashparnia on 18/12/2016.
  */
 public class Starter {
     public static void main(String[] args) {
-
-        //Create and set up the window.
-        JFrame main_frame = new MainFrame();
-        main_frame.setSize(450, 260);
-        main_frame.setExtendedState( main_frame.getExtendedState()|JFrame.MAXIMIZED_BOTH );
-        main_frame.setVisible(true);
-
+        EventQueue.invokeLater(() -> {
+            //Create and set up the window.
+            JFrame main_frame = new MainFrame();
+            main_frame.setSize(450, 260);
+            main_frame.setExtendedState(main_frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
+            main_frame.setVisible(true);
+        });
 
     }
 }
