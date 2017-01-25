@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="easyrules-core-2.4.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/easyrules-core-2.4.0-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

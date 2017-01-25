@@ -1,5 +1,7 @@
 package TaxApp;
 
+import org.easyrules.api.RulesEngine;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -19,6 +21,9 @@ import javax.swing.JFrame;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
+
+import static org.easyrules.core.RulesEngineBuilder.aNewRulesEngine;
+
 
 /**
  * Created by arashparnia on 18/12/2016.
@@ -258,11 +263,15 @@ public class MainFrame extends JFrame {
         b1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.print("Calculating ");
+                System.out.println("firing rules");
+                // create a rules engine
+                RulesEngine rulesEngine = aNewRulesEngine().build();
+                //register the rule
+                rulesEngine.registerRule(new KvkRule());
+                //fire rules
+                rulesEngine.fireRules();
             }
         });
-
-
 
 
     }
@@ -353,6 +362,7 @@ public class MainFrame extends JFrame {
 
 return menuBar;
     }
+
 
 
 
