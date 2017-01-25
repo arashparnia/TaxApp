@@ -6,5 +6,6 @@ package TaxApp;
 public class VATReturnClaim {
     private String company;
     private boolean claim;
+
 }
 
