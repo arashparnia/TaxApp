@@ -1,5 +1,7 @@
 package TaxApp;
 
+import TaxApp.rules.KvkServiceRule;
+import TaxApp.rules.KvkSuppliesRule;
 import org.easyrules.api.RulesEngine;
 
 import javax.swing.*;
@@ -15,8 +17,6 @@ import javax.swing.KeyStroke;
 import javax.swing.ImageIcon;
 
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.JScrollPane;
 import javax.swing.JFrame;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
@@ -88,6 +88,7 @@ public class MainFrame extends JFrame {
         JLabel rubriek_1e_label = new JLabel("No Tariff");
         rubriek_1e_label.setToolTipText("Enter the turnover for goods and services supplied by you in the Netherlands at 0%.");
         JTextField rubriek_1e_turnover_textField = new JTextField();
+        JTextField rubriek_1e_vat_textField = new JTextField();
 
         rubriek_1.setLayout(new GridLayout(5,3));
 
@@ -95,7 +96,7 @@ public class MainFrame extends JFrame {
         rubriek_1.add(rubriek_1b_label); rubriek_1.add(rubriek_1b_turnover_textField); rubriek_1.add(rubriek_1b_vat_textField);
         rubriek_1.add(rubriek_1c_label); rubriek_1.add(rubriek_1c_turnover_textField); rubriek_1.add(rubriek_1c_vat_textField);
         rubriek_1.add(rubriek_1d_label); rubriek_1.add(rubriek_1d_turnover_textField); rubriek_1.add(rubriek_1d_vat_textField);
-        rubriek_1.add(rubriek_1e_label); rubriek_1.add(rubriek_1e_turnover_textField);
+        rubriek_1.add(rubriek_1e_label); rubriek_1.add(rubriek_1e_turnover_textField); rubriek_1.add(rubriek_1e_vat_textField);
 
 
 
@@ -126,20 +127,23 @@ public class MainFrame extends JFrame {
         JLabel rubriek_3a_label = new JLabel("Supplies to non-EU");
         rubriek_3a_label.setToolTipText("Enter the turnover from goods that you exported from the Netherlands to non-EU countries. This includes goods placed under the customs warehousing procedure.");
         JTextField rubriek_3a_turnover_textField = new JTextField();
+        JTextField rubriek_3a_vat_textField = new JTextField();
 
         JLabel rubriek_3b_label = new JLabel("Supplies to or services in EU");
         rubriek_3b_label.setToolTipText("Enter the amount of the goods supplied and services provided within the EU (your intra-Community transactions).");
         JTextField rubriek_3b_turnover_textField = new JTextField();
+        JTextField rubriek_3b_vat_textField = new JTextField();
 
         JLabel rubriek_3c_label = new JLabel("Installation/distance sales within the EU");
         rubriek_3c_label.setToolTipText("assembly or installation of goods in another EU country, for which the goods are supplied from the Netherlands");
         JTextField rubriek_3c_turnover_textField = new JTextField();
+        JTextField rubriek_3c_vat_textField = new JTextField();
 
-        rubriek_3.setLayout(new GridLayout(3,2));
+        rubriek_3.setLayout(new GridLayout(3,3));
 
-        rubriek_3.add(rubriek_3a_label); rubriek_3.add(rubriek_3a_turnover_textField);
-        rubriek_3.add(rubriek_3b_label); rubriek_3.add(rubriek_3b_turnover_textField);
-        rubriek_3.add(rubriek_3c_label); rubriek_3.add(rubriek_3c_turnover_textField);
+        rubriek_3.add(rubriek_3a_label); rubriek_3.add(rubriek_3a_turnover_textField); rubriek_3.add(rubriek_3a_vat_textField);
+        rubriek_3.add(rubriek_3b_label); rubriek_3.add(rubriek_3b_turnover_textField); rubriek_3.add(rubriek_3b_vat_textField);
+        rubriek_3.add(rubriek_3c_label); rubriek_3.add(rubriek_3c_turnover_textField); rubriek_3.add(rubriek_3c_vat_textField);
         
         
 
@@ -159,10 +163,10 @@ public class MainFrame extends JFrame {
         JTextField rubriek_4b_turnover_textField = new JTextField();
         JTextField rubriek_4b_vat_textField = new JTextField();
 
-        rubriek_4.setLayout(new GridLayout(2,2));
+        rubriek_4.setLayout(new GridLayout(2,3));
 
-        rubriek_4.add(rubriek_4a_label); rubriek_4.add(rubriek_4a_turnover_textField);
-        rubriek_4.add(rubriek_4b_label); rubriek_4.add(rubriek_4b_turnover_textField);
+        rubriek_4.add(rubriek_4a_label); rubriek_4.add(rubriek_4a_turnover_textField); rubriek_4.add(rubriek_4a_vat_textField);
+        rubriek_4.add(rubriek_4b_label); rubriek_4.add(rubriek_4b_turnover_textField); rubriek_4.add(rubriek_4b_vat_textField);
 
         JPanel rubriek_5 = new JPanel();
         rubriek_5.setToolTipText("Input tax and small business scheme");
@@ -172,44 +176,51 @@ public class MainFrame extends JFrame {
 
         JLabel rubriek_5a_label = new JLabel("VAT");
         rubriek_5a_label.setToolTipText("VAT charged to you by other entrepreneurs");
+        JTextField rubriek_5a_turnover_textField = new JTextField();
         JTextField rubriek_5a_vat_textField = new JTextField();
 
         JLabel rubriek_5b_label = new JLabel("Input tax and small business scheme");
         rubriek_5b_label.setToolTipText("");
+        JTextField rubriek_5b_turnover_textField = new JTextField();
         JTextField rubriek_5b_vat_textField = new JTextField();
 
         JLabel rubriek_5c_label = new JLabel("subtotal");
         rubriek_5c_label.setToolTipText("This question does not apply to you, as you are based abroad.");
+        JTextField rubriek_5c_turnover_textField = new JTextField();
         JTextField rubriek_5c_vat_textField = new JTextField();
 
         JLabel rubriek_5d_label = new JLabel("Tax relief under the small businesses scheme");
         rubriek_5d_label.setToolTipText("Only complete this question in the last tax return of the year. Specify the VAT that you must pay on the private use.");
+        JTextField rubriek_5d_turnover_textField = new JTextField();
         JTextField rubriek_5d_vat_textField = new JTextField();
 
         JLabel rubriek_5e_label = new JLabel("Estimate previous claims");
         rubriek_5e_label.setToolTipText("");
+        JTextField rubriek_5e_turnover_textField = new JTextField();
         JTextField rubriek_5e_vat_textField = new JTextField();
 
         JLabel rubriek_5f_label = new JLabel("Estimate current claim");
         rubriek_5f_label.setToolTipText("");
+        JTextField rubriek_5f_turnover_textField = new JTextField();
         JTextField rubriek_5f_vat_textField = new JTextField();
 
         JLabel rubriek_5g_label = new JLabel("Total");
         rubriek_5g_label.setToolTipText("");
+        JTextField rubriek_5g_turnover_textField = new JTextField();
         JTextField rubriek_5g_vat_textField = new JTextField();
 
 
 
 
-        rubriek_5.setLayout(new GridLayout(7,2));
+        rubriek_5.setLayout(new GridLayout(7,3));
 
-        rubriek_5.add(rubriek_5a_label);  rubriek_5.add(rubriek_5a_vat_textField);
-        rubriek_5.add(rubriek_5b_label);  rubriek_5.add(rubriek_5b_vat_textField);
-        rubriek_5.add(rubriek_5c_label);  rubriek_5.add(rubriek_5c_vat_textField);
-        rubriek_5.add(rubriek_5d_label);  rubriek_5.add(rubriek_5d_vat_textField);
-        rubriek_5.add(rubriek_5e_label);  rubriek_5.add(rubriek_5e_vat_textField);
-        rubriek_5.add(rubriek_5f_label);  rubriek_5.add(rubriek_5f_vat_textField);
-        rubriek_5.add(rubriek_5g_label);  rubriek_5.add(rubriek_5g_vat_textField);
+        rubriek_5.add(rubriek_5a_label);  rubriek_5.add(rubriek_5a_turnover_textField); rubriek_5.add(rubriek_5a_vat_textField);
+        rubriek_5.add(rubriek_5b_label);  rubriek_5.add(rubriek_5b_turnover_textField); rubriek_5.add(rubriek_5b_vat_textField);
+        rubriek_5.add(rubriek_5c_label);  rubriek_5.add(rubriek_5c_turnover_textField); rubriek_5.add(rubriek_5c_vat_textField);
+        rubriek_5.add(rubriek_5d_label);  rubriek_5.add(rubriek_5d_turnover_textField); rubriek_5.add(rubriek_5d_vat_textField);
+        rubriek_5.add(rubriek_5e_label);  rubriek_5.add(rubriek_5e_turnover_textField); rubriek_5.add(rubriek_5e_vat_textField);
+        rubriek_5.add(rubriek_5f_label);  rubriek_5.add(rubriek_5f_turnover_textField); rubriek_5.add(rubriek_5f_vat_textField);
+        rubriek_5.add(rubriek_5g_label);  rubriek_5.add(rubriek_5g_turnover_textField); rubriek_5.add(rubriek_5g_vat_textField);
 
 
 
@@ -263,11 +274,46 @@ public class MainFrame extends JFrame {
         b1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                VATReturnClaim form = new VATReturnClaim();
+                form.vat_form_1a = rubriek_1a_turnover_textField.getText();
+                form.vat_form_1b = rubriek_1b_turnover_textField.getText();
+                form.vat_form_1c = rubriek_1c_turnover_textField.getText();
+                form.vat_form_1d = rubriek_1d_turnover_textField.getText();
+                form.vat_form_1e = rubriek_1e_turnover_textField.getText();
+                form.vat_form_2a = rubriek_2a_turnover_textField.getText();
+                form.vat_form_3a = rubriek_3a_turnover_textField.getText();
+                form.vat_form_3b = rubriek_3b_turnover_textField.getText();
+                form.vat_form_3c = rubriek_3c_turnover_textField.getText();
+                form.vat_form_4a = rubriek_4a_turnover_textField.getText();
+                form.vat_form_4b = rubriek_4b_turnover_textField.getText();
+                form.vat_form_5a = rubriek_5a_turnover_textField.getText();
+                form.vat_form_5b = rubriek_5b_turnover_textField.getText();
+                form.vat_form_5c = rubriek_5c_turnover_textField.getText();
+                form.vat_form_5d = rubriek_5d_turnover_textField.getText();
+                form.vat_form_5e = rubriek_5e_turnover_textField.getText();
+                form.vat_form_5f = rubriek_5f_turnover_textField.getText();
+                form.vat_form_5g = rubriek_5g_turnover_textField.getText();
+
+                Company company1 = new Company();
+//                KVK kvk1 = new KVK();
+//                company1.kvk = kvk1;
+//                SBI sbi1 = new SBI();
+//                company1.kvk.sbi = sbi1;
+
+
+                company1.kvk.sbi.activity = 77;
+
+
                 System.out.println("firing rules");
-                // create a rules engine
-                RulesEngine rulesEngine = aNewRulesEngine().build();
-                //register the rule
-                rulesEngine.registerRule(new KvkRule());
+                //create a rules engine
+                RulesEngine rulesEngine = aNewRulesEngine()
+                        .named("rules engine")
+                        .build();
+
+                //register rules
+                rulesEngine.registerRule(new KvkSuppliesRule(company1));
+                rulesEngine.registerRule(new KvkServiceRule(company1));
+
                 //fire rules
                 rulesEngine.fireRules();
             }
