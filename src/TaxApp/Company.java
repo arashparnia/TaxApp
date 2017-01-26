@@ -22,6 +22,7 @@ public class Company {
         this.kvk = new KVK();
         this.customerRegistery = new CustomerRegistery();
         this.employee = new Person();
+        this.comnpany_car = new CompanyCar();
 
     }
 }

@@ -28,7 +28,7 @@ public class KvkFinancieleInstellingenRule extends BasicRule {
     @Action
     public void execute(){
         System.out.println(" HAS-ABSTRACTION company.kvk.sbi.product.tarif = High ");
-        company.kvk.sbi.product.tarif = "High";
+        company.kvk.sbi.product.tariff = "High";
     }
 
 }

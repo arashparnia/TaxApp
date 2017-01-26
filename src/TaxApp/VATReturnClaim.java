@@ -4,47 +4,47 @@ package TaxApp;
  * Created by arash on 1/18/17.
  */
 public class VATReturnClaim {
-    String company_name;
-    String RSIN;
+    public String company_name;
+    public String RSIN;
 
-    boolean negative_claim = true;
+    public boolean negative_claim = true;
 
-    boolean truth_value_1a = true;
-    boolean truth_value_1b = true;
-    boolean truth_value_1c = true;
-    boolean truth_value_1d = true;
-    boolean truth_value_1e = true;
-    boolean truth_value_2a = true;
-    boolean truth_value_3a = true;
-    boolean truth_value_3b = true;
-    boolean truth_value_3c = true;
-    boolean truth_value_4a = true;
-    boolean truth_value_4b = true;
-    boolean truth_value_5a = true;
-    boolean truth_value_5b = true;
-    boolean truth_value_5c = true;
-    boolean truth_value_5d = true;
-    boolean truth_value_5e = true;
-    boolean truth_value_5f = true;
+    public boolean truth_value_1a = false;
+    public boolean truth_value_1b = false;
+    public boolean truth_value_1c = false;
+    public boolean truth_value_1d = false;
+    public boolean truth_value_1e = false;
+    public boolean truth_value_2a = false;
+    public boolean truth_value_3a = false;
+    public boolean truth_value_3b = false;
+    public boolean truth_value_3c = false;
+    public boolean truth_value_4a = false;
+    public boolean truth_value_4b = false;
+    public boolean truth_value_5a = false;
+    public boolean truth_value_5b = false;
+    public boolean truth_value_5c = false;
+    public boolean truth_value_5d = false;
+    public boolean truth_value_5e = false;
+    public boolean truth_value_5f = false;
 
-    String vat_form_1a;
-    String vat_form_1b ;
-    String vat_form_1c ;
-    String vat_form_1d ;
-    String vat_form_1e ;
-    String vat_form_2a ;
-    String vat_form_3a ;
-    String vat_form_3b ;
-    String vat_form_3c ;
-    String vat_form_4a ;
-    String vat_form_4b ;
-    String vat_form_5a ;
-    String vat_form_5b ;
-    String vat_form_5c ;
-    String vat_form_5d ;
-    String vat_form_5e ;
-    String vat_form_5f ;
-    String vat_form_5g ;
+    public String vat_form_1a;
+    public String vat_form_1b ;
+    public String vat_form_1c ;
+    public String vat_form_1d ;
+    public String vat_form_1e ;
+    public String vat_form_2a ;
+    public String vat_form_3a ;
+    public String vat_form_3b ;
+    public String vat_form_3c ;
+    public String vat_form_4a ;
+    public String vat_form_4b ;
+    public String vat_form_5a ;
+    public String vat_form_5b ;
+    public String vat_form_5c ;
+    public String vat_form_5d ;
+    public String vat_form_5e ;
+    public String vat_form_5f ;
+    public String vat_form_5g ;
 
 
 }

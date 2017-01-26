@@ -29,7 +29,7 @@ public class KvkDetailhandleRule extends BasicRule {
     @Action
     public void execute(){
         System.out.println(" HAS-ABSTRACTION Company.KvK.SBI.Product.Tarif = Low; ");
-        company.kvk.sbi.product.tarif = "Low";
+        company.kvk.sbi.product.tariff = "Low";
     }
 
 }

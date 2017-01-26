@@ -11,7 +11,7 @@ public class CustomerRegistery {
     public boolean fraud_history;
     public String payment_history;
     public Date last_contact;
-    public String est_permit;
-    public String impoty_licence;
+    public boolean est_permit;
+    public boolean import_licence;
 
 }

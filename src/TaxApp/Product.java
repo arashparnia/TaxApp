@@ -9,7 +9,7 @@ public class Product {
     public boolean does_import;
     public boolean does_export;
     public float intraCommunityAqcuisition;
-    public String tarif;
+    public String tariff;
     public boolean private_use;
 
 

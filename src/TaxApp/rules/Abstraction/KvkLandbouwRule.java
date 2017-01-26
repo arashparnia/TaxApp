@@ -6,29 +6,29 @@ import org.easyrules.annotation.Condition;
 import org.easyrules.core.BasicRule;
 
 /**
- * Created by arash on 1/25/17.
+ * Created by arash on 1/26/17.
  */
-public class KvkInformatieRule extends BasicRule {
-
+public class KvkLandbouwRule extends BasicRule {
     private Company company;
 
 
-    public KvkInformatieRule(Company company) {
-        super("KvkInformatieRule", "KvkInformatieRule ", 1);
+    public KvkLandbouwRule(Company company) {
+        super("KvkLandbouwRule", " KvkLandbouwRule  ", 1);
         this.company = company;
     }
 
     @Condition
     public boolean evaluate() {
         return (
-                company.kvk.sbi.section == "Informatie en communicatie" && company.kvk.sbi.code <= 62.03
+                company.kvk.sbi.section == "Landbouw, Bosbouw en Visserij"
+
         );
     }
 
 
     @Action
     public void execute(){
-        System.out.println(" HAS-ABSTRACTION Company.KvK.SBI.Product.Tarif = High ");
+        System.out.println(" HAS-ABSTRACTION Company.KvK.SBI.Product.Tarif = High; ");
         company.kvk.sbi.product.tariff = "High";
     }
 

@@ -1,6 +1,7 @@
 package TaxApp;
 
 import TaxApp.rules.Abstraction.*;
+import TaxApp.rules.Regulation.*;
 import org.easyrules.api.RulesEngine;
 
 import javax.swing.*;
@@ -368,12 +369,32 @@ public class MainFrame extends JFrame {
                         .build();
 
                 //register rules
-                rulesEngine.registerRule(new KvkSuppliesRule(company));
-                rulesEngine.registerRule(new KvkServiceRule(company));
-                rulesEngine.registerRule(new KvkFinancieleInstellingenRule(company));
-                rulesEngine.registerRule(new KvkDetailhandleRule(company));
-                rulesEngine.registerRule(new KvkAdviseringRule(company));
-                rulesEngine.registerRule(new KvkInformatieRule(company));
+                // ABSTRACTION RULES
+//                rulesEngine.registerRule(new KvkSuppliesRule(company));
+//                rulesEngine.registerRule(new KvkServiceRule(company));
+//                rulesEngine.registerRule(new KvkFinancieleInstellingenRule(company));
+//                rulesEngine.registerRule(new KvkDetailhandleRule(company));
+//                rulesEngine.registerRule(new KvkAdviseringRule(company));
+//                rulesEngine.registerRule(new KvkInformatieRule(company));
+//                rulesEngine.registerRule(new KvkLandbouwRule(company));
+
+                //REGULATION RULES
+                rulesEngine.registerRule(new Form1aRule(company));
+//                rulesEngine.registerRule(new Form1bRule(company));
+//                rulesEngine.registerRule(new Form1cRule(company));
+//                rulesEngine.registerRule(new Form1dRule(company));
+//                rulesEngine.registerRule(new Form1eRule(company));
+//                rulesEngine.registerRule(new Form2aRule(company));
+//                rulesEngine.registerRule(new Form3aRule(company));
+//                rulesEngine.registerRule(new Form3bRule(company));
+//                rulesEngine.registerRule(new Form3cRule(company));
+//                rulesEngine.registerRule(new Form4aRule(company));
+//                rulesEngine.registerRule(new Form4bRule(company));
+//                rulesEngine.registerRule(new Form5bRule(company));
+//                rulesEngine.registerRule(new Form5dRule(company));
+//                rulesEngine.registerRule(new Form5eRule(company));
+//                rulesEngine.registerRule(new Form5fRule(company));
+
                 //fire rules
                 rulesEngine.fireRules();
 
@@ -487,8 +508,8 @@ public class MainFrame extends JFrame {
                 company.customerRegistery.fraud_history = false;
                 company.customerRegistery.payment_history = null;
                 company.customerRegistery.last_contact = null;
-                company.customerRegistery.est_permit = null;
-                company.customerRegistery.impoty_licence = null;
+                company.customerRegistery.est_permit = false;
+                company.customerRegistery.import_licence = false;
                 company.comnpany_car.licence_plate= "00 ABC 1";
                 company.comnpany_car.driven_by = company.employee;
                 company.comnpany_car.rdw.licence_plate =  company.comnpany_car.licence_plate;
