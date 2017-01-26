@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Date;
+import java.util.Iterator;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JCheckBoxMenuItem;
@@ -37,6 +38,7 @@ public class MainFrame extends JFrame {
 
     public  MainFrame(){
 
+        company = new Company();
         //this.setJMenuBar(createMenuBar());
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -335,7 +337,7 @@ public class MainFrame extends JFrame {
         fire_button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                company = new Company();
+
                
                  company.vatReturnClaim.vat_form_1a = rubriek_1a_turnover_textField.getText();
                  company.vatReturnClaim.vat_form_1b = rubriek_1b_turnover_textField.getText();
@@ -370,37 +372,43 @@ public class MainFrame extends JFrame {
 
                 //register rules
                 // ABSTRACTION RULES
-//                rulesEngine.registerRule(new KvkSuppliesRule(company));
-//                rulesEngine.registerRule(new KvkServiceRule(company));
-//                rulesEngine.registerRule(new KvkFinancieleInstellingenRule(company));
-//                rulesEngine.registerRule(new KvkDetailhandleRule(company));
-//                rulesEngine.registerRule(new KvkAdviseringRule(company));
-//                rulesEngine.registerRule(new KvkInformatieRule(company));
-//                rulesEngine.registerRule(new KvkLandbouwRule(company));
+                rulesEngine.registerRule(new KvkSuppliesRule(company));
+                rulesEngine.registerRule(new KvkServiceRule(company));
+                rulesEngine.registerRule(new KvkFinancieleInstellingenRule(company));
+                rulesEngine.registerRule(new KvkDetailhandleRule(company));
+                rulesEngine.registerRule(new KvkAdviseringRule(company));
+                rulesEngine.registerRule(new KvkInformatieRule(company));
+                rulesEngine.registerRule(new KvkLandbouwRule(company));
 
                 //REGULATION RULES
                 rulesEngine.registerRule(new Form1aRule(company));
-//                rulesEngine.registerRule(new Form1bRule(company));
-//                rulesEngine.registerRule(new Form1cRule(company));
-//                rulesEngine.registerRule(new Form1dRule(company));
-//                rulesEngine.registerRule(new Form1eRule(company));
-//                rulesEngine.registerRule(new Form2aRule(company));
-//                rulesEngine.registerRule(new Form3aRule(company));
-//                rulesEngine.registerRule(new Form3bRule(company));
-//                rulesEngine.registerRule(new Form3cRule(company));
-//                rulesEngine.registerRule(new Form4aRule(company));
-//                rulesEngine.registerRule(new Form4bRule(company));
-//                rulesEngine.registerRule(new Form5bRule(company));
-//                rulesEngine.registerRule(new Form5dRule(company));
-//                rulesEngine.registerRule(new Form5eRule(company));
-//                rulesEngine.registerRule(new Form5fRule(company));
+                rulesEngine.registerRule(new Form1bRule(company));
+                rulesEngine.registerRule(new Form1cRule(company));
+                rulesEngine.registerRule(new Form1dRule(company));
+                rulesEngine.registerRule(new Form1eRule(company));
+                rulesEngine.registerRule(new Form2aRule(company));
+                rulesEngine.registerRule(new Form3aRule(company));
+                rulesEngine.registerRule(new Form3bRule(company));
+                rulesEngine.registerRule(new Form3cRule(company));
+                rulesEngine.registerRule(new Form4aRule(company));
+                rulesEngine.registerRule(new Form4bRule(company));
+                rulesEngine.registerRule(new Form5bRule(company));
+                rulesEngine.registerRule(new Form5dRule(company));
+                rulesEngine.registerRule(new Form5eRule(company));
+                rulesEngine.registerRule(new Form5fRule(company));
 
                 //fire rules
                 rulesEngine.fireRules();
 
 
                 result_textArea.append("\n");
-                result_textArea.append(rulesEngine.checkRules().toString());
+                Iterator it = rulesEngine.checkRules().entrySet().iterator();
+                while (it.hasNext()) {
+                    Map.Entry pair = (Map.Entry)it.next();
+                    System.out.println(pair.getKey() + " = " + pair.getValue());
+                    it.remove(); // avoids a ConcurrentModificationException
+                }
+                result_textArea.append();
 
 
             }
@@ -477,7 +485,7 @@ public class MainFrame extends JFrame {
                 rubriek_5f_turnover_textField.setText("");
                 rubriek_5g_turnover_textField.setText("-2007.50");
 
-                company = new Company();
+
                 company.id = 1;
                 company.name = "ConsoultancyKey";
                 company.rsin = 18656263;

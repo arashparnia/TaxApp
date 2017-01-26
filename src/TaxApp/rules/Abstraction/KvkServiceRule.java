@@ -21,14 +21,14 @@ public class KvkServiceRule extends BasicRule {
     @Condition
     public boolean evaluate() {
         return (
-                (company.kvk.sbi.product.activity ==9) ||
-                (company.kvk.sbi.product.activity>=33 && company.kvk.sbi.product.activity<35) ||
-                (company.kvk.sbi.product.activity >=37 && company.kvk.sbi.product.activity <41) ||
-                (company.kvk.sbi.product.activity ==45) ||
-                (company.kvk.sbi.product.activity  >=49 && company.kvk.sbi.product.activity <56) ||
-                (company.kvk.sbi.product.activity >=57 && company.kvk.sbi.product.activity < 68) ||
-                (company.kvk.sbi.product.activity>=69 && company.kvk.sbi.product.activity <77) ||
-                (company.kvk.sbi.product.activity >77)
+                (company.kvk.sbi.code ==9) ||
+                (company.kvk.sbi.code>=33 && company.kvk.sbi.code<35) ||
+                (company.kvk.sbi.code >=37 && company.kvk.sbi.code <41) ||
+                (company.kvk.sbi.code ==45) ||
+                (company.kvk.sbi.code  >=49 && company.kvk.sbi.code <56) ||
+                (company.kvk.sbi.code >=57 && company.kvk.sbi.code < 68) ||
+                (company.kvk.sbi.code>=69 && company.kvk.sbi.code <77) ||
+                (company.kvk.sbi.code >77)
         );
     }
 
