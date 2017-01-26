@@ -9,8 +9,8 @@ public class Company {
     public int id;
     public String name ;
     public int RSIN;
-    public Vector<Person> employees;
-    public Vector<CompanyCar> comnpany_cars;
+    public Person employee;
+    public CompanyCar comnpany_car;
 
     public KVK kvk;
     public CustomerRegistery customerRegistery;
@@ -19,6 +19,7 @@ public class Company {
         super();
         this.kvk = new KVK();
         this.customerRegistery = new CustomerRegistery();
+        this.employee = new Person();
 
     }
 }

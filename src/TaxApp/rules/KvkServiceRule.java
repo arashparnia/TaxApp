@@ -22,14 +22,14 @@ public class KvkServiceRule extends BasicRule {
     @Condition
     public boolean evaluate() {
         return (
-                (company.kvk.sbi.activity ==9) ||
-                (company.kvk.sbi.activity>=33 && company.kvk.sbi.activity<35) ||
-                (company.kvk.sbi.activity >=37 && company.kvk.sbi.activity <41) ||
-                (company.kvk.sbi.activity ==45) ||
-                (company.kvk.sbi.activity  >=49 && company.kvk.sbi.activity <56) ||
-                (company.kvk.sbi.activity >=57 && company.kvk.sbi.activity < 68) ||
-                (company.kvk.sbi.activity>=69 && company.kvk.sbi.activity <77) ||
-                (company.kvk.sbi.activity >77)
+                (company.kvk.sbi.product.activity ==9) ||
+                (company.kvk.sbi.product.activity>=33 && company.kvk.sbi.product.activity<35) ||
+                (company.kvk.sbi.product.activity >=37 && company.kvk.sbi.product.activity <41) ||
+                (company.kvk.sbi.product.activity ==45) ||
+                (company.kvk.sbi.product.activity  >=49 && company.kvk.sbi.product.activity <56) ||
+                (company.kvk.sbi.product.activity >=57 && company.kvk.sbi.product.activity < 68) ||
+                (company.kvk.sbi.product.activity>=69 && company.kvk.sbi.product.activity <77) ||
+                (company.kvk.sbi.product.activity >77)
         );
     }
 
@@ -37,7 +37,7 @@ public class KvkServiceRule extends BasicRule {
     @Action
     public void execute(){
         System.out.println("activity type: Service");
-        company.kvk.sbi.activity_type = "service";
+        company.kvk.sbi.product.activity_type = "service";
     }
 
 }

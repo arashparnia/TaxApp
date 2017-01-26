@@ -8,6 +8,11 @@ public class SBI {
     public String section;
     public String department;
 
-    public int activity;
-    public String activity_type;
+    public Product product;
+
+    public SBI(){
+        this.product = new Product();
+
+    }
+
 }
