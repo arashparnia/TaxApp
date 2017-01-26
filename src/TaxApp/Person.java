@@ -7,9 +7,11 @@ public class Person {
     public int id;
     public String first_name;
     public String last_name;
-    public String fucntion;
+    public String function;
+    public GBA gba;
 
     public Person() {
+        this.gba = new GBA();
     }
 
 

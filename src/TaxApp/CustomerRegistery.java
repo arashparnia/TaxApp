@@ -6,10 +6,12 @@ import java.util.Date;
  * Created by arash on 1/24/17.
  */
 public class CustomerRegistery {
-    String records;
-    boolean fraud_history;
-    String payment_history;
-    Date last_contact;
-    boolean est_permit;
+    public int id;
+    public String records;
+    public boolean fraud_history;
+    public String payment_history;
+    public Date last_contact;
+    public String est_permit;
+    public String impoty_licence;
 
 }

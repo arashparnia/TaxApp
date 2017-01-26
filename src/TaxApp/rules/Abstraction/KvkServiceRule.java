@@ -1,7 +1,6 @@
-package TaxApp.rules;
+package TaxApp.rules.Abstraction;
 
 import TaxApp.Company;
-import TaxApp.KVK;
 import org.easyrules.annotation.Action;
 import org.easyrules.annotation.Condition;
 import org.easyrules.core.BasicRule;

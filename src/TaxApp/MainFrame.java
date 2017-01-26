@@ -1,12 +1,12 @@
 package TaxApp;
 
-import TaxApp.rules.KvkServiceRule;
-import TaxApp.rules.KvkSuppliesRule;
+import TaxApp.rules.Abstraction.*;
 import org.easyrules.api.RulesEngine;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Date;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JCheckBoxMenuItem;
@@ -30,6 +30,8 @@ import static org.easyrules.core.RulesEngineBuilder.aNewRulesEngine;
  */
 public class MainFrame extends JFrame {
 
+    private Company company;
+    private VATReturnClaim form;
 
 
     public  MainFrame(){
@@ -68,29 +70,28 @@ public class MainFrame extends JFrame {
         JLabel rubriek_1a_label = new JLabel("1a: High Tariff");
         rubriek_1a_label.setToolTipText("If you want to know which supplies of goods and services are subject to the high or low rate, you should visit our website and search for ‘btw-tarief ’ (VAT rate).");
         JTextField rubriek_1a_turnover_textField = new JTextField();
-        JTextField rubriek_1a_vat_textField = new JTextField("VAT");
-        rubriek_1a_vat_textField.setEnabled(false);
+        JTextField rubriek_1a_vat_textField = new JTextField();
 
         JLabel rubriek_1b_label = new JLabel("1b: Low Tariff");
         rubriek_1b_label.setToolTipText("If you want to know which supplies of goods and services are subject to the high or low rate, you should visit our website and search for ‘btw-tarief ’ (VAT rate).");
         JTextField rubriek_1b_turnover_textField = new JTextField();
-        JTextField rubriek_1b_vat_textField = new JTextField("VAT");
-        rubriek_1b_vat_textField.setEnabled(false);
+        JTextField rubriek_1b_vat_textField = new JTextField();
+        
         JLabel rubriek_1c_label = new JLabel("1c: Other Tariff");
         rubriek_1c_label.setToolTipText("This question does not apply to you, as you are based abroad.");
         JTextField rubriek_1c_turnover_textField = new JTextField();
-        JTextField rubriek_1c_vat_textField = new JTextField("VAT");
-        rubriek_1c_vat_textField.setEnabled(false);
+        JTextField rubriek_1c_vat_textField = new JTextField();
+        
         JLabel rubriek_1d_label = new JLabel("1d: Private use");
         rubriek_1d_label.setToolTipText("Only complete this question in the last tax return of the year. Specify the VAT that you must pay on the private use.");
         JTextField rubriek_1d_turnover_textField = new JTextField();
-        JTextField rubriek_1d_vat_textField = new JTextField("VAT");
-        rubriek_1d_vat_textField.setEnabled(false);
+        JTextField rubriek_1d_vat_textField = new JTextField();
+        
         JLabel rubriek_1e_label = new JLabel("1e: No Tariff");
         rubriek_1e_label.setToolTipText("Enter the turnover for goods and services supplied by you in the Netherlands at 0%.");
         JTextField rubriek_1e_turnover_textField = new JTextField();
-        JTextField rubriek_1e_vat_textField = new JTextField("VAT");
-        rubriek_1e_vat_textField.setEnabled(false);
+        JTextField rubriek_1e_vat_textField = new JTextField();
+        
         rubriek_1.setLayout(new GridLayout(5,3));
 
         rubriek_1.add(rubriek_1a_label); rubriek_1.add(rubriek_1a_turnover_textField); rubriek_1.add(rubriek_1a_vat_textField);
@@ -111,8 +112,8 @@ public class MainFrame extends JFrame {
         JLabel rubriek_2a_label = new JLabel("2a: reverse-charged VAT");
         rubriek_2a_label.setToolTipText("You should complete this question if a Dutch entrepreneur has supplied goods or services to you in the Netherlands for which the VAT has been reverse charged to you.");
         JTextField rubriek_2a_turnover_textField = new JTextField();
-        JTextField rubriek_2a_vat_textField = new JTextField("VAT");
-        rubriek_2a_vat_textField.setEnabled(false);
+        JTextField rubriek_2a_vat_textField = new JTextField();
+        
         rubriek_2.setLayout(new GridLayout(1,3));
 
         rubriek_2.add(rubriek_2a_label); rubriek_2.add(rubriek_2a_turnover_textField); rubriek_2.add(rubriek_2a_vat_textField);
@@ -128,18 +129,18 @@ public class MainFrame extends JFrame {
         JLabel rubriek_3a_label = new JLabel("3a: Supplies to non-EU");
         rubriek_3a_label.setToolTipText("Enter the turnover from goods that you exported from the Netherlands to non-EU countries. This includes goods placed under the customs warehousing procedure.");
         JTextField rubriek_3a_turnover_textField = new JTextField();
-        JTextField rubriek_3a_vat_textField = new JTextField("VAT");
-        rubriek_3a_vat_textField.setEnabled(false);
+        JTextField rubriek_3a_vat_textField = new JTextField();
+        
         JLabel rubriek_3b_label = new JLabel("3b: Supplies to or services in EU");
         rubriek_3b_label.setToolTipText("Enter the amount of the goods supplied and services provided within the EU (your intra-Community transactions).");
         JTextField rubriek_3b_turnover_textField = new JTextField();
-        JTextField rubriek_3b_vat_textField = new JTextField("VAT");
-        rubriek_3b_vat_textField.setEnabled(false);
+        JTextField rubriek_3b_vat_textField = new JTextField();
+        
         JLabel rubriek_3c_label = new JLabel("3c: Installation/distance sales within the EU");
         rubriek_3c_label.setToolTipText("assembly or installation of goods in another EU country, for which the goods are supplied from the Netherlands");
         JTextField rubriek_3c_turnover_textField = new JTextField();
-        JTextField rubriek_3c_vat_textField = new JTextField("VAT");
-        rubriek_3c_vat_textField.setEnabled(false);
+        JTextField rubriek_3c_vat_textField = new JTextField();
+        
         rubriek_3.setLayout(new GridLayout(3,3));
 
         rubriek_3.add(rubriek_3a_label); rubriek_3.add(rubriek_3a_turnover_textField); rubriek_3.add(rubriek_3a_vat_textField);
@@ -157,13 +158,13 @@ public class MainFrame extends JFrame {
         JLabel rubriek_4a_label = new JLabel("4a: Supplies/services from non-EU countries");
         rubriek_4a_label.setToolTipText("You imported goods into the Netherlands from outside the EU, using the reverse-charge mechanism on import.");
         JTextField rubriek_4a_turnover_textField = new JTextField();
-        JTextField rubriek_4a_vat_textField = new JTextField("VAT");
-        rubriek_4a_vat_textField.setEnabled(false);
+        JTextField rubriek_4a_vat_textField = new JTextField();
+        
         JLabel rubriek_4b_label = new JLabel("4b: Supplies/services from EU countries");
         rubriek_4b_label.setToolTipText("If you want to know which supplies of goods and services are subject to the high or low rate, you should visit our website and search for ‘btw-tarief ’ (VAT rate).");
         JTextField rubriek_4b_turnover_textField = new JTextField();
-        JTextField rubriek_4b_vat_textField = new JTextField("VAT");
-        rubriek_4b_vat_textField.setEnabled(false);
+        JTextField rubriek_4b_vat_textField = new JTextField();
+        
         rubriek_4.setLayout(new GridLayout(2,3));
 
         rubriek_4.add(rubriek_4a_label); rubriek_4.add(rubriek_4a_turnover_textField); rubriek_4.add(rubriek_4a_vat_textField);
@@ -178,38 +179,38 @@ public class MainFrame extends JFrame {
         JLabel rubriek_5a_label = new JLabel("5a: VAT");
         rubriek_5a_label.setToolTipText("VAT charged to you by other entrepreneurs");
         JTextField rubriek_5a_turnover_textField = new JTextField();
-        JTextField rubriek_5a_vat_textField = new JTextField("VAT");
-        rubriek_5a_vat_textField.setEnabled(false);
+        JTextField rubriek_5a_vat_textField = new JTextField();
+        
         JLabel rubriek_5b_label = new JLabel("5b: Input tax and small business scheme");
         rubriek_5b_label.setToolTipText("");
         JTextField rubriek_5b_turnover_textField = new JTextField();
-        JTextField rubriek_5b_vat_textField = new JTextField("VAT");
-        rubriek_5b_vat_textField.setEnabled(false);
+        JTextField rubriek_5b_vat_textField = new JTextField();
+        
         JLabel rubriek_5c_label = new JLabel("5c subtotal");
         rubriek_5c_label.setToolTipText("This question does not apply to you, as you are based abroad.");
         JTextField rubriek_5c_turnover_textField = new JTextField();
-        JTextField rubriek_5c_vat_textField = new JTextField("VAT");
-        rubriek_5c_vat_textField.setEnabled(false);
+        JTextField rubriek_5c_vat_textField = new JTextField();
+        
         JLabel rubriek_5d_label = new JLabel("5d: Tax relief businesses scheme");
         rubriek_5d_label.setToolTipText("Only complete this question in the last tax return of the year. Specify the VAT that you must pay on the private use.");
         JTextField rubriek_5d_turnover_textField = new JTextField();
-        JTextField rubriek_5d_vat_textField = new JTextField("VAT");
-        rubriek_5d_vat_textField.setEnabled(false);
+        JTextField rubriek_5d_vat_textField = new JTextField();
+        
         JLabel rubriek_5e_label = new JLabel("5e: Estimate previous claims");
         rubriek_5e_label.setToolTipText("");
         JTextField rubriek_5e_turnover_textField = new JTextField();
-        JTextField rubriek_5e_vat_textField = new JTextField("VAT");
-        rubriek_5e_vat_textField.setEnabled(false);
+        JTextField rubriek_5e_vat_textField = new JTextField();
+        
         JLabel rubriek_5f_label = new JLabel("5f: Estimate current claim");
         rubriek_5f_label.setToolTipText("");
         JTextField rubriek_5f_turnover_textField = new JTextField();
-        JTextField rubriek_5f_vat_textField = new JTextField("VAT");
-        rubriek_5f_vat_textField.setEnabled(false);
+        JTextField rubriek_5f_vat_textField = new JTextField();
+        
         JLabel rubriek_5g_label = new JLabel("5g: Total");
         rubriek_5g_label.setToolTipText("");
         JTextField rubriek_5g_turnover_textField = new JTextField();
-        JTextField rubriek_5g_vat_textField = new JTextField("VAT");
-        rubriek_5g_vat_textField.setEnabled(false);
+        JTextField rubriek_5g_vat_textField = new JTextField();
+        
 
 
 
@@ -226,7 +227,34 @@ public class MainFrame extends JFrame {
 
 
 
-
+        rubriek_3a_vat_textField.setVisible(false);
+        rubriek_3b_vat_textField.setVisible(false);
+        rubriek_3c_vat_textField.setVisible(false);
+        rubriek_5a_vat_textField.setVisible(false);
+        rubriek_5b_vat_textField.setVisible(false);
+        rubriek_5c_vat_textField.setVisible(false);
+        rubriek_5d_vat_textField.setVisible(false);
+        rubriek_5e_vat_textField.setVisible(false);
+        rubriek_5f_vat_textField.setVisible(false);
+        rubriek_5g_vat_textField.setVisible(false);
+        rubriek_1a_vat_textField.setEnabled(false);
+        rubriek_1b_vat_textField.setEnabled(false);
+        rubriek_1c_vat_textField.setEnabled(false);
+        rubriek_1d_vat_textField.setEnabled(false);
+        rubriek_1e_vat_textField.setEnabled(false);
+        rubriek_2a_vat_textField.setEnabled(false);
+        rubriek_3a_vat_textField.setEnabled(false);
+        rubriek_3b_vat_textField.setEnabled(false);
+        rubriek_3c_vat_textField.setEnabled(false);
+        rubriek_4a_vat_textField.setEnabled(false);
+        rubriek_4b_vat_textField.setEnabled(false);
+        rubriek_5a_vat_textField.setEnabled(false);
+        rubriek_5b_vat_textField.setEnabled(false);
+        rubriek_5c_vat_textField.setEnabled(false);
+        rubriek_5d_vat_textField.setEnabled(false);
+        rubriek_5e_vat_textField.setEnabled(false);
+        rubriek_5f_vat_textField.setEnabled(false);
+        rubriek_5g_vat_textField.setEnabled(false);
 
 
 
@@ -268,8 +296,12 @@ public class MainFrame extends JFrame {
 
         JButton fire_button = new JButton("Fire!");
         JButton reset_button = new JButton("reset!");
+        JButton senario1_button = new JButton("senario 1");
+        JButton senario2_button = new JButton("senario 2");
         buttons_panel.add(fire_button);
         buttons_panel.add(reset_button);
+        buttons_panel.add(senario1_button);
+        buttons_panel.add(senario2_button);
         c.fill = GridBagConstraints.LINE_START;
         c.gridheight = 1;
         c.gridx = 1;
@@ -302,46 +334,46 @@ public class MainFrame extends JFrame {
         fire_button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                VATReturnClaim form = new VATReturnClaim();
-                form.vat_form_1a = rubriek_1a_turnover_textField.getText();
-                form.vat_form_1b = rubriek_1b_turnover_textField.getText();
-                form.vat_form_1c = rubriek_1c_turnover_textField.getText();
-                form.vat_form_1d = rubriek_1d_turnover_textField.getText();
-                form.vat_form_1e = rubriek_1e_turnover_textField.getText();
-                form.vat_form_2a = rubriek_2a_turnover_textField.getText();
-                form.vat_form_3a = rubriek_3a_turnover_textField.getText();
-                form.vat_form_3b = rubriek_3b_turnover_textField.getText();
-                form.vat_form_3c = rubriek_3c_turnover_textField.getText();
-                form.vat_form_4a = rubriek_4a_turnover_textField.getText();
-                form.vat_form_4b = rubriek_4b_turnover_textField.getText();
-                form.vat_form_5a = rubriek_5a_turnover_textField.getText();
-                form.vat_form_5b = rubriek_5b_turnover_textField.getText();
-                form.vat_form_5c = rubriek_5c_turnover_textField.getText();
-                form.vat_form_5d = rubriek_5d_turnover_textField.getText();
-                form.vat_form_5e = rubriek_5e_turnover_textField.getText();
-                form.vat_form_5f = rubriek_5f_turnover_textField.getText();
-                form.vat_form_5g = rubriek_5g_turnover_textField.getText();
-
-                Company company1 = new Company();
-//                KVK kvk1 = new KVK();
-//                company1.kvk = kvk1;
-//                SBI sbi1 = new SBI();
-//                company1.kvk.sbi = sbi1;
+                company = new Company();
+               
+                 company.vatReturnClaim.vat_form_1a = rubriek_1a_turnover_textField.getText();
+                 company.vatReturnClaim.vat_form_1b = rubriek_1b_turnover_textField.getText();
+                 company.vatReturnClaim.vat_form_1c = rubriek_1c_turnover_textField.getText();
+                 company.vatReturnClaim.vat_form_1d = rubriek_1d_turnover_textField.getText();
+                 company.vatReturnClaim.vat_form_1e = rubriek_1e_turnover_textField.getText();
+                 company.vatReturnClaim.vat_form_2a = rubriek_2a_turnover_textField.getText();
+                 company.vatReturnClaim.vat_form_3a = rubriek_3a_turnover_textField.getText();
+                 company.vatReturnClaim.vat_form_3b = rubriek_3b_turnover_textField.getText();
+                 company.vatReturnClaim.vat_form_3c = rubriek_3c_turnover_textField.getText();
+                 company.vatReturnClaim.vat_form_4a = rubriek_4a_turnover_textField.getText();
+                 company.vatReturnClaim.vat_form_4b = rubriek_4b_turnover_textField.getText();
+                 company.vatReturnClaim.vat_form_5a = rubriek_5a_turnover_textField.getText();
+                 company.vatReturnClaim.vat_form_5b = rubriek_5b_turnover_textField.getText();
+                 company.vatReturnClaim.vat_form_5c = rubriek_5c_turnover_textField.getText();
+                 company.vatReturnClaim.vat_form_5d = rubriek_5d_turnover_textField.getText();
+                 company.vatReturnClaim.vat_form_5e = rubriek_5e_turnover_textField.getText();
+                 company.vatReturnClaim.vat_form_5f = rubriek_5f_turnover_textField.getText();
+                 company.vatReturnClaim.vat_form_5g = rubriek_5g_turnover_textField.getText();
 
 
-                company1.kvk.sbi.product.activity = 77;
+                
 
 
-                System.out.println("firing rules");
+
+
+                System.out.println("Firing rules");
                 //create a rules engine
                 RulesEngine rulesEngine = aNewRulesEngine()
                         .named("rules engine")
                         .build();
 
                 //register rules
-                rulesEngine.registerRule(new KvkSuppliesRule(company1));
-                rulesEngine.registerRule(new KvkServiceRule(company1));
-
+                rulesEngine.registerRule(new KvkSuppliesRule(company));
+                rulesEngine.registerRule(new KvkServiceRule(company));
+                rulesEngine.registerRule(new KvkFinancieleInstellingenRule(company));
+                rulesEngine.registerRule(new KvkDetailhandleRule(company));
+                rulesEngine.registerRule(new KvkAdviseringRule(company));
+                rulesEngine.registerRule(new KvkInformatieRule(company));
                 //fire rules
                 rulesEngine.fireRules();
 
@@ -377,27 +409,99 @@ public class MainFrame extends JFrame {
                 rubriek_5f_turnover_textField.setText("");
                 rubriek_5g_turnover_textField.setText("");
 
-                rubriek_1a_vat_textField.setText("VAT");
-                rubriek_1b_vat_textField.setText("VAT");
-                rubriek_1c_vat_textField.setText("VAT");
-                rubriek_1d_vat_textField.setText("VAT");
-                rubriek_1e_vat_textField.setText("VAT");
-                rubriek_2a_vat_textField.setText("VAT");
-                rubriek_3a_vat_textField.setText("VAT");
-                rubriek_3b_vat_textField.setText("VAT");
-                rubriek_3c_vat_textField.setText("VAT");
-                rubriek_4a_vat_textField.setText("VAT");
-                rubriek_4b_vat_textField.setText("VAT");
-                rubriek_5a_vat_textField.setText("VAT");
-                rubriek_5b_vat_textField.setText("VAT");
-                rubriek_5c_vat_textField.setText("VAT");
-                rubriek_5d_vat_textField.setText("VAT");
-                rubriek_5e_vat_textField.setText("VAT");
-                rubriek_5f_vat_textField.setText("VAT");
-                rubriek_5g_vat_textField.setText("VAT");
+                rubriek_1a_vat_textField.setText("");
+                rubriek_1b_vat_textField.setText("");
+                rubriek_1c_vat_textField.setText("");
+                rubriek_1d_vat_textField.setText("");
+                rubriek_1e_vat_textField.setText("");
+                rubriek_2a_vat_textField.setText("");
+                rubriek_3a_vat_textField.setText("");
+                rubriek_3b_vat_textField.setText("");
+                rubriek_3c_vat_textField.setText("");
+                rubriek_4a_vat_textField.setText("");
+                rubriek_4b_vat_textField.setText("");
+                rubriek_5a_vat_textField.setText("");
+                rubriek_5b_vat_textField.setText("");
+                rubriek_5c_vat_textField.setText("");
+                rubriek_5d_vat_textField.setText("");
+                rubriek_5e_vat_textField.setText("");
+                rubriek_5f_vat_textField.setText("");
+                rubriek_5g_vat_textField.setText("");
+                
                 
                 result_textArea.setAlignmentX(JTextArea.CENTER_ALIGNMENT);
                 result_textArea.setText("");
+            }
+        });
+
+        senario1_button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                rubriek_1a_turnover_textField.setText("50000.00"); rubriek_1a_vat_textField.setText("10500");
+                rubriek_1b_turnover_textField.setText("");
+                rubriek_1c_turnover_textField.setText("");
+                rubriek_1d_turnover_textField.setText("700.00"); rubriek_1d_vat_textField.setText("700.00");
+                rubriek_1e_turnover_textField.setText("");
+                rubriek_2a_turnover_textField.setText("283.00"); rubriek_2a_vat_textField.setText("50.00");
+                rubriek_3a_turnover_textField.setText("");
+                rubriek_3b_turnover_textField.setText("1500.00");
+                rubriek_3c_turnover_textField.setText("");
+                rubriek_4a_turnover_textField.setText("");
+                rubriek_4b_turnover_textField.setText("");
+                rubriek_5a_turnover_textField.setText("11200.00");
+                rubriek_5b_turnover_textField.setText("13000.00");
+                rubriek_5c_turnover_textField.setText("-1800.00");
+                rubriek_5d_turnover_textField.setText("-207.50");
+                rubriek_5e_turnover_textField.setText("");
+                rubriek_5f_turnover_textField.setText("");
+                rubriek_5g_turnover_textField.setText("-2007.50");
+
+                company = new Company();
+                company.id = 1;
+                company.name = "ConsoultancyKey";
+                company.rsin = 18656263;
+                company.employee.id = 10;
+                company.employee.first_name = "John";
+                company.employee.last_name = "Doe";
+                company.employee.function = "Head Consultant";
+                company.employee.gba.last_name = "Doe";
+                company.employee.gba.first_name = "John";
+                company.employee.gba.sex = "Male";
+                company.employee.gba.bsi = 123456782;
+                company.employee.gba.address = "FictiStraat 1";
+                company.employee.gba.nationality = "Netherlandse";
+                company.employee.gba.birth_date = new Date(1970,11,1);
+                company.employee.gba.birth_place = "FictiDrop";
+                company.kvk.rsin = company.rsin;
+                company.kvk.id = "12345678 0000";
+                company.kvk.legal_form = "Eenmanszaak";
+                company.kvk.bussiness_address = "FictiStraat 1";
+                company.kvk.registered_office = "Netherlands";
+                company.kvk.employee_count = 1;
+                company.kvk.url = "consultancyKey.org";
+                company.kvk.sbi.code = 62.02;
+                company.kvk.sbi.section = "Informatie en communicatie";
+                company.kvk.sbi.department ="Dienstverlenende activiteiten op het gebied van informatietechnologie";
+                company.customerRegistery.id = company.id;
+                company.customerRegistery.records = null;
+                company.customerRegistery.fraud_history = false;
+                company.customerRegistery.payment_history = null;
+                company.customerRegistery.last_contact = null;
+                company.customerRegistery.est_permit = null;
+                company.customerRegistery.impoty_licence = null;
+                company.comnpany_car.licence_plate= "00 ABC 1";
+                company.comnpany_car.driven_by = company.employee;
+                company.comnpany_car.rdw.licence_plate =  company.comnpany_car.licence_plate;
+                company.comnpany_car.rdw.owner = company.employee.gba.bsi;
+                company.comnpany_car.rdw.vehicle_charactristics="Mercedes";
+                company.comnpany_car.rdw.envorumentals_characteristics = "Label A";
+
+
+
+
+
+
+
             }
         });
     }

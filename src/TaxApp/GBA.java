@@ -10,7 +10,7 @@ public class GBA {
     String last_name;
     String first_name;
     String sex;
-    SBI sbi;
+    int bsi;
     String address;
     String nationality;
     Date birth_date;

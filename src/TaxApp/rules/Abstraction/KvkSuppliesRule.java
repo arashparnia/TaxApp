@@ -1,4 +1,4 @@
-package TaxApp.rules;
+package TaxApp.rules.Abstraction;
 
 import TaxApp.Company;
 import TaxApp.KVK;
