@@ -1,6 +1,10 @@
 package TaxApp;
 
 import TaxApp.rules.Abstraction.*;
+import TaxApp.rules.Match.Truth1aRule;
+import TaxApp.rules.Match.Truth1bRule;
+import TaxApp.rules.Match.Truth1cRule;
+import TaxApp.rules.Match.Truth1dRule;
 import TaxApp.rules.Regulation.*;
 import org.easyrules.api.RulesEngine;
 
@@ -8,7 +12,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JCheckBoxMenuItem;
@@ -39,6 +45,12 @@ public class MainFrame extends JFrame {
     public  MainFrame(){
 
         company = new Company();
+
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("a1", "type of animal");
+        System.out.println(map.get("dog"));
+
+
         //this.setJMenuBar(createMenuBar());
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -360,7 +372,24 @@ public class MainFrame extends JFrame {
 
 
                 
-
+                //everything with value is false
+                if (rubriek_1a_turnover_textField.getText().isEmpty()) company.vatReturnClaim.truth_value_1a = true;
+                if (rubriek_1b_turnover_textField.getText().isEmpty()) company.vatReturnClaim.truth_value_1b = true;
+                if (rubriek_1c_turnover_textField.getText().isEmpty()) company.vatReturnClaim.truth_value_1c = true;
+                if (rubriek_1d_turnover_textField.getText().isEmpty()) company.vatReturnClaim.truth_value_1d = true;
+                if (rubriek_1e_turnover_textField.getText().isEmpty()) company.vatReturnClaim.truth_value_1e = true;
+                if (rubriek_2a_turnover_textField.getText().isEmpty()) company.vatReturnClaim.truth_value_2a = true;
+                if (rubriek_3a_turnover_textField.getText().isEmpty()) company.vatReturnClaim.truth_value_3a = true;
+                if (rubriek_3b_turnover_textField.getText().isEmpty()) company.vatReturnClaim.truth_value_3b = true;
+                if (rubriek_3c_turnover_textField.getText().isEmpty()) company.vatReturnClaim.truth_value_3c = true;
+                if (rubriek_4a_turnover_textField.getText().isEmpty()) company.vatReturnClaim.truth_value_4a = true;
+                if (rubriek_4b_turnover_textField.getText().isEmpty()) company.vatReturnClaim.truth_value_4b = true;
+                if (rubriek_5a_turnover_textField.getText().isEmpty()) company.vatReturnClaim.truth_value_5a = true;
+                if (rubriek_5b_turnover_textField.getText().isEmpty()) company.vatReturnClaim.truth_value_5b = true;
+                if (rubriek_5c_turnover_textField.getText().isEmpty()) company.vatReturnClaim.truth_value_5c = true;
+                if (rubriek_5d_turnover_textField.getText().isEmpty()) company.vatReturnClaim.truth_value_5d = true;
+                if (rubriek_5e_turnover_textField.getText().isEmpty()) company.vatReturnClaim.truth_value_5e = true;
+                if (rubriek_5f_turnover_textField.getText().isEmpty()) company.vatReturnClaim.truth_value_5f = true;
 
 
 
@@ -379,6 +408,7 @@ public class MainFrame extends JFrame {
                 rulesEngine.registerRule(new KvkAdviseringRule(company));
                 rulesEngine.registerRule(new KvkInformatieRule(company));
                 rulesEngine.registerRule(new KvkLandbouwRule(company));
+                rulesEngine.registerRule(new CompanyCarRule(company));
 
                 //REGULATION RULES
                 rulesEngine.registerRule(new Form1aRule(company));
@@ -397,20 +427,50 @@ public class MainFrame extends JFrame {
                 rulesEngine.registerRule(new Form5eRule(company));
                 rulesEngine.registerRule(new Form5fRule(company));
 
+                //match rules
+
+                rulesEngine.registerRule(new Truth1aRule(company));
+                rulesEngine.registerRule(new Truth1bRule(company));
+                rulesEngine.registerRule(new Truth1cRule(company));
+                rulesEngine.registerRule(new Truth1dRule(company));
+
+
+
+
                 //fire rules
+
                 rulesEngine.fireRules();
+//                result_textArea.append("Fireded rules\n\n");
+//                Iterator it = rulesEngine.checkRules().entrySet().iterator();
+//                while (it.hasNext()) {
+//                    Map.Entry pair = (Map.Entry)it.next();
+//                    if ((Boolean) pair.getValue() == true) {
+//                        System.out.println(pair.getKey() + " = " + pair.getValue());
+//                        result_textArea.append(pair.getKey() +  "\n");
+//                    }
+//                    it.remove(); // avoids a ConcurrentModificationException
+//                }
+
+//                if ( company.vatReturnClaim.truth_value_1a == false)  result_textArea.append("\n 1a\n");
+//                if ( company.vatReturnClaim.truth_value_1b == false)  result_textArea.append("\n 1b\n");
+//                if ( company.vatReturnClaim.truth_value_1c == false)  result_textArea.append("\n 1c\n");
+//                if ( company.vatReturnClaim.truth_value_1d == false)  result_textArea.append("\n 1d\n");
+//                if ( company.vatReturnClaim.truth_value_1e == false)  result_textArea.append("\n 1e\n");
+//                if ( company.vatReturnClaim.truth_value_2a == false)  result_textArea.append("\n 2a\n");
+//                if ( company.vatReturnClaim.truth_value_3a == false)  result_textArea.append("\n 3a\n");
+//                if ( company.vatReturnClaim.truth_value_3b == false)  result_textArea.append("\n 3b\n");
+//                if ( company.vatReturnClaim.truth_value_3c == false)  result_textArea.append("\n 3c\n");
+//                if ( company.vatReturnClaim.truth_value_4a == false)  result_textArea.append("\n 4a\n");
+//                if ( company.vatReturnClaim.truth_value_4b == false)  result_textArea.append("\n 4b\n");
+////                if ( company.vatReturnClaim.truth_value_5a == false)  result_textArea.append("\n 5a");
+//                if ( company.vatReturnClaim.truth_value_5b == false)  result_textArea.append("\n 5b\n");
+////                if ( company.vatReturnClaim.truth_value_5c == false)  result_textArea.append("\n 5c");
+//                if ( company.vatReturnClaim.truth_value_5d == false)  result_textArea.append("\n 5d\n");
+//                if ( company.vatReturnClaim.truth_value_5e == false)  result_textArea.append("\n 5e\n");
+//                if ( company.vatReturnClaim.truth_value_5f == false)  result_textArea.append("\n 5f\n");
 
 
-                result_textArea.append("\n");
-                Iterator it = rulesEngine.checkRules().entrySet().iterator();
-                while (it.hasNext()) {
-                    Map.Entry pair = (Map.Entry)it.next();
-                    System.out.println(pair.getKey() + " = " + pair.getValue());
-                    it.remove(); // avoids a ConcurrentModificationException
-                }
-                result_textArea.append();
-
-
+                result_textArea.append(company.vatReturnClaim.questions);
             }
         });
 
@@ -521,7 +581,7 @@ public class MainFrame extends JFrame {
                 company.comnpany_car.licence_plate= "00 ABC 1";
                 company.comnpany_car.driven_by = company.employee;
                 company.comnpany_car.rdw.licence_plate =  company.comnpany_car.licence_plate;
-                company.comnpany_car.rdw.owner = company.employee.gba.bsi;
+                company.comnpany_car.rdw.owner = String.valueOf(company.employee.gba.bsi);
                 company.comnpany_car.rdw.vehicle_charactristics="Mercedes";
                 company.comnpany_car.rdw.envorumentals_characteristics = "Label A";
 

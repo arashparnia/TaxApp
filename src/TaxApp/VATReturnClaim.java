@@ -6,7 +6,7 @@ package TaxApp;
 public class VATReturnClaim {
     public String company_name;
     public String RSIN;
-
+    public String questions = "Questions\n\n";
     public boolean negative_claim = true;
 
     public boolean truth_value_1a = false;
