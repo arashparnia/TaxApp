@@ -29,7 +29,11 @@ public class Truth1cRule  extends BasicRule {
 
     @Action
     public void execute() {
-        company.vatReturnClaim.questions = company.vatReturnClaim.questions + "\nQuestion 1c \n";
+        company.vatReturnClaim.questions = company.vatReturnClaim.questions + "\nQuestion 1c \n"+
+        "1c Leveringen / diensten belast met overige tarieven, behalve 0%\n"+
+        "1. Een specificatie van de verschuldigde BTW per factuur.\n"+
+        "2. Ik verzoek u kopiefacturen van de 5 hoogste bedragen aan BTW mee te zenden";
+
 
     }
 }

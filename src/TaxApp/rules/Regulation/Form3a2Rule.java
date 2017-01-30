@@ -10,13 +10,13 @@ import org.easyrules.core.BasicRule;
  */
 
 
-public class Form3aRule  extends BasicRule {
+public class Form3a2Rule  extends BasicRule {
 
     private Company company;
 
 
-    public Form3aRule(Company company) {
-        super("Form3aRule", "Form3aRule ", 2);
+    public Form3a2Rule(Company company) {
+        super("Form3a2Rule", "Form3a2Rule ", 2);
         this.company = company;
     }
 
@@ -29,8 +29,8 @@ public class Form3aRule  extends BasicRule {
 
     @Action
     public void execute(){
-        System.out.println("INDICATES  Company.VAT-Return-Claim.Vat-Return-Claim-Truth-Value.3a = True;" );
-        company.vatReturnClaim.truth_value_3a= true;
+        System.out.println("INDICATES  Company.VAT-Return-Claim.Vat-Return-Claim-Truth-Value.3a2 = True;" );
+        company.vatReturnClaim.truth_value_3a2= true;
     }
 
 }

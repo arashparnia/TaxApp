@@ -29,7 +29,15 @@ public class Truth1aRule  extends BasicRule {
 
     @Action
     public void execute() {
-        company.vatReturnClaim.questions = company.vatReturnClaim.questions + "\nQuestion 1a \n";
+        company.vatReturnClaim.questions = company.vatReturnClaim.questions +
+                "\nQuestion 1a \n"+
+                "1a Leveringen / diensten belast met laag tarief\n" +
+                "1. Er is een bedrag aan negatieve omzet vermeld. Waar heeft het bedrag betrekking op?\n"+
+                "2. Een specificatie van de omzet per factuur\n"+
+                "3. Ik verzoek u kopieën van de oorspronkelijke en verbeterde facturen (creditnota’s) mee te zenden.\n"+
+                "   Indien er creditnota’s zijn uitgereikt, zal ik contact opnemen met de \n "+
+                "   wederpartij om de BTW-afdracht te verifiëren.";
+
 
     }
 }

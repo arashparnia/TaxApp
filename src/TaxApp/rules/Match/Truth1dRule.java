@@ -29,7 +29,11 @@ public class Truth1dRule  extends BasicRule {
 
     @Action
     public void execute() {
-        company.vatReturnClaim.questions = company.vatReturnClaim.questions + "\nQuestion 1d \n";
+        company.vatReturnClaim.questions = company.vatReturnClaim.questions + "\nQuestion 1d \n"  +
+        "1d Privégebruik\n"+
+        "1. Er is een bedrag als omzet vermeld. waar heeft dat bedrag betrekking op?\n"+
+        "2. een specificatie van de verschuldigde BTW.\n";
+
 
     }
 }

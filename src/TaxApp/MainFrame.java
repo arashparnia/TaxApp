@@ -1,10 +1,7 @@
 package TaxApp;
 
 import TaxApp.rules.Abstraction.*;
-import TaxApp.rules.Match.Truth1aRule;
-import TaxApp.rules.Match.Truth1bRule;
-import TaxApp.rules.Match.Truth1cRule;
-import TaxApp.rules.Match.Truth1dRule;
+import TaxApp.rules.Match.*;
 import TaxApp.rules.Regulation.*;
 import org.easyrules.api.RulesEngine;
 
@@ -45,10 +42,6 @@ public class MainFrame extends JFrame {
     public  MainFrame(){
 
         company = new Company();
-
-        Map<String, String> map = new HashMap<String, String>();
-        map.put("a1", "type of animal");
-        System.out.println(map.get("dog"));
 
 
         //this.setJMenuBar(createMenuBar());
@@ -379,7 +372,8 @@ public class MainFrame extends JFrame {
                 if (rubriek_1d_turnover_textField.getText().isEmpty()) company.vatReturnClaim.truth_value_1d = true;
                 if (rubriek_1e_turnover_textField.getText().isEmpty()) company.vatReturnClaim.truth_value_1e = true;
                 if (rubriek_2a_turnover_textField.getText().isEmpty()) company.vatReturnClaim.truth_value_2a = true;
-                if (rubriek_3a_turnover_textField.getText().isEmpty()) company.vatReturnClaim.truth_value_3a = true;
+                if (rubriek_3a_turnover_textField.getText().isEmpty()) company.vatReturnClaim.truth_value_3a1 = true;
+                if (rubriek_3a_turnover_textField.getText().isEmpty()) company.vatReturnClaim.truth_value_3a2 = true;
                 if (rubriek_3b_turnover_textField.getText().isEmpty()) company.vatReturnClaim.truth_value_3b = true;
                 if (rubriek_3c_turnover_textField.getText().isEmpty()) company.vatReturnClaim.truth_value_3c = true;
                 if (rubriek_4a_turnover_textField.getText().isEmpty()) company.vatReturnClaim.truth_value_4a = true;
@@ -417,7 +411,8 @@ public class MainFrame extends JFrame {
                 rulesEngine.registerRule(new Form1dRule(company));
                 rulesEngine.registerRule(new Form1eRule(company));
                 rulesEngine.registerRule(new Form2aRule(company));
-                rulesEngine.registerRule(new Form3aRule(company));
+                rulesEngine.registerRule(new Form3a1Rule(company));
+                rulesEngine.registerRule(new Form3a2Rule(company));
                 rulesEngine.registerRule(new Form3bRule(company));
                 rulesEngine.registerRule(new Form3cRule(company));
                 rulesEngine.registerRule(new Form4aRule(company));
@@ -433,6 +428,16 @@ public class MainFrame extends JFrame {
                 rulesEngine.registerRule(new Truth1bRule(company));
                 rulesEngine.registerRule(new Truth1cRule(company));
                 rulesEngine.registerRule(new Truth1dRule(company));
+                rulesEngine.registerRule(new Truth1eRule(company));
+                rulesEngine.registerRule(new Truth2aRule(company));
+                rulesEngine.registerRule(new Truth3a1Rule(company));
+                rulesEngine.registerRule(new Truth3a2Rule(company));
+                rulesEngine.registerRule(new Truth3bRule(company));
+                rulesEngine.registerRule(new Truth3cRule(company));
+                rulesEngine.registerRule(new Truth4aRule(company));
+                rulesEngine.registerRule(new Truth4bRule(company));
+                rulesEngine.registerRule(new Truth5bRule(company));
+                rulesEngine.registerRule(new Truth5dRule(company));
 
 
 

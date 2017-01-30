@@ -15,7 +15,8 @@ public class VATReturnClaim {
     public boolean truth_value_1d = false;
     public boolean truth_value_1e = false;
     public boolean truth_value_2a = false;
-    public boolean truth_value_3a = false;
+    public boolean truth_value_3a1 = false;
+    public boolean truth_value_3a2 = false;
     public boolean truth_value_3b = false;
     public boolean truth_value_3c = false;
     public boolean truth_value_4a = false;
