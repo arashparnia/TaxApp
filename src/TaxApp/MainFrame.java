@@ -598,6 +598,76 @@ public class MainFrame extends JFrame {
 
             }
         });
+        senario2_button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                rubriek_1a_turnover_textField.setText("25000.00"); rubriek_1a_vat_textField.setText("5250.00");
+                rubriek_1b_turnover_textField.setText("");
+                rubriek_1c_turnover_textField.setText("");
+                rubriek_1d_turnover_textField.setText("");
+                rubriek_1e_turnover_textField.setText("150000.00");
+                rubriek_2a_turnover_textField.setText("");
+                rubriek_3a_turnover_textField.setText("230000");
+                rubriek_3b_turnover_textField.setText("1500.00");
+                rubriek_3c_turnover_textField.setText("");
+                rubriek_4a_turnover_textField.setText("500.00");
+                rubriek_4b_turnover_textField.setText("5000.00");
+                rubriek_5a_turnover_textField.setText("250.00");
+                rubriek_5b_turnover_textField.setText("5500.00");
+                rubriek_5c_turnover_textField.setText("5250.00");
+                rubriek_5d_turnover_textField.setText("");
+                rubriek_5e_turnover_textField.setText("68.00");
+                rubriek_5f_turnover_textField.setText("0");
+                rubriek_5g_turnover_textField.setText("5318.00");
+
+
+                company.id = 2;
+                company.name = "FarmFresh";
+                company.rsin = 23961534;
+                company.employee.id = 11;
+                company.employee.first_name = "Paula";
+                company.employee.last_name = "Goode";
+                company.employee.function = "Farmer";
+                company.employee.gba.last_name = "Goode";
+                company.employee.gba.first_name = "Paula";
+                company.employee.gba.sex = "Female";
+                company.employee.gba.bsi = 123456783;
+                company.employee.gba.address = "FictieStraat 1";
+                company.employee.gba.nationality = "Nederlandse";
+                company.employee.gba.birth_date = new Date(1970,1,1);
+                company.employee.gba.birth_place = "FictieStad";
+                company.kvk.rsin = company.rsin;
+                company.kvk.id = "12345678 0001";
+                company.kvk.legal_form = "BV";
+                company.kvk.bussiness_address = "FictieStraat 1";
+                company.kvk.registered_office = "Netherlands";
+                company.kvk.employee_count = 5;
+                company.kvk.url = "FarmFresh.org";
+                company.kvk.sbi.code = 1.11;
+                company.kvk.sbi.section = "Landbouw, Bosbouw en Visserij";
+                company.kvk.sbi.department ="Landbouw jacht en dienstverlening voor de landbouw en jacht";
+                company.customerRegistery.id = company.id;
+                company.customerRegistery.records = "Record1 Record2";
+                company.customerRegistery.fraud_history = false;
+                company.customerRegistery.payment_history = "On Time";
+                company.customerRegistery.last_contact = null;
+                company.customerRegistery.est_permit = false;
+                company.customerRegistery.import_licence = false;
+                company.comnpany_car.licence_plate= "";
+                company.comnpany_car.driven_by = null;
+                company.comnpany_car.rdw.licence_plate =  "";
+                company.comnpany_car.rdw.owner = "";
+                company.comnpany_car.rdw.vehicle_charactristics= "";
+                company.comnpany_car.rdw.envorumentals_characteristics = "";
+
+
+
+
+
+
+
+            }
+        });
     }
 
 
